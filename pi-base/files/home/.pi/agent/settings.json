@@ -1,0 +1,5 @@
+{
+	"defaultProvider":"ollama",
+	"defaultModel":"byczech/qwen3.6-mmproj-16G-UD-IQ3_S:35b",
+	"globalContextLimit": 32000
+}

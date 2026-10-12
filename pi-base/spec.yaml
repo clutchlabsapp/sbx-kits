@@ -1,0 +1,38 @@
+schemaVersion: "2"
+kind: mixin
+name: pi-base
+description: Pi with local Ollama and my Remote Pi relay
+
+args:
+  relay_host:
+    required: true
+    description: Remote Pi relay hostname
+  model:
+    default: VladimirGav/gemma4-26b-16GB-VRAM:latest
+
+permissions:
+  network:
+    allow:
+      - localhost:11434
+      - "${{ kit.args.relay_host }}"
+      - registry.npmjs.org
+    deny:
+      - api.anthropic.com
+      - platform.claude.com
+
+environment:
+  variables:
+    REMOTE_PI_RELAY: "https://${{ kit.args.relay_host }}"
+
+setup:
+  install:
+    - command: pi install npm:remote-pi
+      user: "1000"
+      description: Install the Remote Pi plugin
+    - command: pi install npm:pi-git-shortcuts
+      user: "1000"
+      description: Install git shortcuts
+    - command: pi install npm:git:github.com/DraconDev/pi-global-context-limit
+      user: "1000"
+      description: Install global context limit tool
+
