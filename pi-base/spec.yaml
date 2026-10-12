@@ -32,7 +32,7 @@ setup:
     - command: pi install npm:pi-git-shortcuts
       user: "1000"
       description: Install git shortcuts
-    - command: pi install npm:git:github.com/DraconDev/pi-global-context-limit
+    - command: pi install npm:git@github.com:DraconDev/pi-global-context-limit
       user: "1000"
       description: Install global context limit tool
 
